@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lag="ja">
+
+<head>
+  <meta carset="utf-8" />
+  <title>課題3-①</title>
+</head>
+
+<body>
+  <h1>ToDoリスト</h1>
+  <p style="display: inline-block;"><input type="radio">すべて</p>
+  <p style="display: inline-block;"><input type="radio">作業中</p>
+  <p style="display: inline-block;"><input type="radio">完了</p>
+
+  <table class="todo-list">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>コメント</td>
+        <td>状態</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody id="todo-list">
+    </tbody>
+  </table>
+
+  <h1>新規タスクの追加</h1>
+  <div>
+    <label for="input-todo-box"></label>
+    <input id="input-todo-box" class="task" type="text">
+    <p id="add-button" class="btn"><input type="button" value="送信"></p>
+  </div>
+
+  <style>
+    .task {
+      float: left;
+      padding: 3px;
+      margin: 0px;
+    }
+
+    .btn {
+      float: left;
+      padding: 3px;
+      margin: 0px;
+    }
+  </style>
+
+  <script>
+    (() => {
+      const todos = [];
+
+      const inputBox = document.getElementById('input-todo-box');
+      const addButton = document.getElementById('add-button');
+      const listContainer = document.getElementById('todo-list');
+
+      addButton.addEventListener('click', (event) => {
+        const todo = inputBox.value;
+        inputBox.value = '';
+
+        if (todo) {
+          todos.push(todo);
+          showTodos();
+        }
+      });
+
+      function showTodos() {
+
+        listContainer.textContent = ''
+
+        todos.forEach((todo, index) => {
+          const todoItem = document.createElement('tr');
+
+          listContainer.appendChild(todoItem);
+
+          const taskNumber = index;
+          id.textContent = taskNumber;
+          listContainer.appendChild(id);
+
+          toDo.textContent = todo;
+          listContainer.appendChild(toDo);
+
+          const taskButton = document.createElement('button');
+          taskButton.textContent = '作業中';
+          //deleteButton.addEventListener
+          listContainer.appendChild(taskButton);
+
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = '削除';
+          deleteButton.addEventListener('click', (event) => {
+            deleteTodo(index);
+          });
+          listContainer.appendChild(deleteButton);
+        });
+      }
+      function deleteTodo(index) {
+        todos.splice(index, 1);
+        showTodos();
+      }
+    })();
+  </script>
+</body>
+
+</html>
