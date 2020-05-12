@@ -66,22 +66,18 @@
 
       function showTodos() {
 
-        while (listContainer.firstChild) {
-          listContainer.removeChild(listContainer.firstChild);
-        }
+        listContainer.textContent = ''
 
         todos.forEach((todo, index) => {
-          const taskNumber = index;
           const todoItem = document.createElement('tr');
 
           listContainer.appendChild(todoItem);
 
-          const id = document.createElement('td');
-          id.textContent = `${taskNumber}`;
+          const taskNumber = index;
+          id.textContent = taskNumber;
           listContainer.appendChild(id);
 
-          const toDo = document.createElement('td');
-          toDo.textContent = `${todo}`;
+          toDo.textContent = todo;
           listContainer.appendChild(toDo);
 
           const taskButton = document.createElement('button');
